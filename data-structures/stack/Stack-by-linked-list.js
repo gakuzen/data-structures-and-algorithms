@@ -1,6 +1,6 @@
 class Stack {
   constructor() {
-    this.top;
+    this.top = null;
   }
 
   push(item) {
