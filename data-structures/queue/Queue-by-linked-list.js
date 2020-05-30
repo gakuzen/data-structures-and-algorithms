@@ -64,3 +64,5 @@ const test = () => {
 };
 
 test();
+
+module.exports = Queue;

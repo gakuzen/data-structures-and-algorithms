@@ -1,3 +1,5 @@
+const Queue = require("../queue/Queue-by-linked-list");
+
 class BinaryTreeNode {
   constructor(data) {
     this.data = data;
@@ -79,26 +81,26 @@ class BinarySearchTree {
     }
   }
 
-  inOrderTraversal(node) {
+  inOrderTraversalRecursive(node) {
     if (node) {
-      this.inOrderTraversal(node.left);
+      this.inOrderTraversalRecursive(node.left);
       console.log(node.data);
-      this.inOrderTraversal(node.right);
+      this.inOrderTraversalRecursive(node.right);
     }
   }
 
-  preOrderTraversal(node) {
+  preOrderTraversalRecursive(node) {
     if (node) {
       console.log(node.data);
-      this.preOrderTraversal(node.left);
-      this.preOrderTraversal(node.right);
+      this.preOrderTraversalRecursive(node.left);
+      this.preOrderTraversalRecursive(node.right);
     }
   }
 
-  postOrderTraversal(node) {
+  postOrderTraversalRecursive(node) {
     if (node) {
-      this.postOrderTraversal(node.left);
-      this.postOrderTraversal(node.right);
+      this.postOrderTraversalRecursive(node.left);
+      this.postOrderTraversalRecursive(node.right);
       console.log(node.data);
     }
   }
@@ -115,6 +117,89 @@ class BinarySearchTree {
       return this.search(node.right, data);
     } else {
       return node;
+    }
+  }
+
+  breathFirstSearch(node) {
+    const queue = new Queue();
+    queue.enqueue(node);
+    while (!queue.isEmpty()) {
+      const tmp = queue.dequeue();
+
+      console.log(tmp.data);
+
+      if (tmp.left) {
+        queue.enqueue(tmp.left);
+      }
+      if (tmp.right) {
+        queue.enqueue(tmp.right);
+      }
+    }
+  }
+
+  inOrderTraversalIterative(node) {
+    if (!node) return;
+
+    const stack = [];
+    let current = node;
+
+    while (current || stack.length > 0) {
+      while (current) {
+        stack.push(current);
+        current = current.left;
+      }
+
+      current = stack.pop();
+
+      console.log(current.data);
+
+      current = current.right;
+    }
+  }
+
+  preOrderTraversalIterative(node) {
+    if (!node) return;
+
+    const stack = [];
+    stack.push(node);
+
+    while (stack.length > 0) {
+      const top = stack.pop();
+      console.log(top.data);
+
+      if (top.right) {
+        stack.push(top.right);
+      }
+      if (top.left) {
+        stack.push(top.left);
+      }
+    }
+  }
+
+  postOrderTraversalIterative(node) {
+    if (!node) return;
+
+    const stack1 = [];
+    const stack2 = [];
+
+    stack1.push(node);
+
+    while (stack1.length > 0) {
+      const top = stack1.pop();
+
+      stack2.push(top);
+
+      if (top.left) {
+        stack1.push(top.left);
+      }
+      if (top.right) {
+        stack1.push(top.right);
+      }
+    }
+
+    while (stack2.length > 0) {
+      const top = stack2.pop();
+      console.log(top.data);
     }
   }
 }
@@ -141,7 +226,7 @@ BST.insert(27);
 //    5   9  17
 
 // prints 5 7 9 10 13 15 17 22 25 27
-BST.inOrderTraversal(BST.root);
+BST.inOrderTraversalRecursive(BST.root);
 
 // Removing node with no children
 BST.remove(5);
@@ -155,7 +240,7 @@ BST.remove(5);
 //        9  17
 
 // prints 7 9 10 13 15 17 22 25 27
-BST.inOrderTraversal(BST.root);
+BST.inOrderTraversalRecursive(BST.root);
 
 // Removing node with one children
 BST.remove(7);
@@ -169,7 +254,7 @@ BST.remove(7);
 //           17
 
 // prints 9 10 13 15 17 22 25 27
-BST.inOrderTraversal(BST.root);
+BST.inOrderTraversalRecursive(BST.root);
 
 BST.remove(15);
 
@@ -179,11 +264,22 @@ BST.remove(15);
 //       / \   / \
 //      9  13 22  27
 
-console.log("inorder traversal");
-BST.inOrderTraversal(BST.root);
-console.log("preorder traversal");
-BST.preOrderTraversal(BST.root);
-console.log("postorder traversal");
-BST.postOrderTraversal(BST.root);
+console.log("recursive inorder traversal");
+BST.inOrderTraversalRecursive(BST.root);
+console.log("iterative inorder traversal");
+BST.inOrderTraversalIterative(BST.root);
+
+console.log("recursive preorder traversal");
+BST.preOrderTraversalRecursive(BST.root);
+console.log("iterative preorder traversal");
+BST.preOrderTraversalIterative(BST.root);
+
+console.log("recursive postorder traversal");
+BST.postOrderTraversalRecursive(BST.root);
+console.log("iterative postorder traversal");
+BST.postOrderTraversalIterative(BST.root);
+
+console.log("BFS");
+BST.breathFirstSearch(BST.root);
 
 // Credit: test cases are copied from https://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/
