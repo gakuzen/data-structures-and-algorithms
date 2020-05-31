@@ -118,18 +118,22 @@ class MinHeap {
   }
 }
 
-const minHeap = new MinHeap();
+const test = () => {
+  const minHeap = new MinHeap();
 
-minHeap.insert(4);
-minHeap.insert(5);
-minHeap.insert(6);
-minHeap.insert(3);
-minHeap.insert(2);
-minHeap.insert(9);
-minHeap.insert(8);
+  minHeap.insert(4);
+  minHeap.insert(5);
+  minHeap.insert(6);
+  minHeap.insert(3);
+  minHeap.insert(2);
+  minHeap.insert(9);
+  minHeap.insert(8);
 
-minHeap.traversal();
+  minHeap.traversal();
 
-minHeap.removeMin();
+  minHeap.removeMin();
 
-minHeap.traversal();
+  minHeap.traversal();
+};
+
+// test();
