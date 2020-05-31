@@ -204,82 +204,85 @@ class BinarySearchTree {
   }
 }
 
-const BST = new BinarySearchTree();
+const test = () => {
+  const BST = new BinarySearchTree();
 
-BST.insert(15);
-BST.insert(25);
-BST.insert(10);
-BST.insert(7);
-BST.insert(22);
-BST.insert(17);
-BST.insert(13);
-BST.insert(5);
-BST.insert(9);
-BST.insert(27);
+  BST.insert(15);
+  BST.insert(25);
+  BST.insert(10);
+  BST.insert(7);
+  BST.insert(22);
+  BST.insert(17);
+  BST.insert(13);
+  BST.insert(5);
+  BST.insert(9);
+  BST.insert(27);
 
-//          15
-//         /  \
-//        10   25
-//       / \   / \
-//      7  13 22  27
-//     / \    /
-//    5   9  17
+  // Credit: test cases are copied from https://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/
+  //          15
+  //         /  \
+  //        10   25
+  //       / \   / \
+  //      7  13 22  27
+  //     / \    /
+  //    5   9  17
 
-// prints 5 7 9 10 13 15 17 22 25 27
-BST.inOrderTraversalRecursive(BST.root);
+  // prints 5 7 9 10 13 15 17 22 25 27
+  BST.inOrderTraversalRecursive(BST.root);
 
-// Removing node with no children
-BST.remove(5);
+  // Removing node with no children
+  BST.remove(5);
 
-//          15
-//         /  \
-//        10   25
-//       / \   / \
-//      7  13 22  27
-//       \    /
-//        9  17
+  //          15
+  //         /  \
+  //        10   25
+  //       / \   / \
+  //      7  13 22  27
+  //       \    /
+  //        9  17
 
-// prints 7 9 10 13 15 17 22 25 27
-BST.inOrderTraversalRecursive(BST.root);
+  // prints 7 9 10 13 15 17 22 25 27
+  BST.inOrderTraversalRecursive(BST.root);
 
-// Removing node with one children
-BST.remove(7);
+  // Removing node with one children
+  BST.remove(7);
 
-//          15
-//         /  \
-//        10   25
-//       / \   / \
-//      9  13 22  27
-//            /
-//           17
+  //          15
+  //         /  \
+  //        10   25
+  //       / \   / \
+  //      9  13 22  27
+  //            /
+  //           17
 
-// prints 9 10 13 15 17 22 25 27
-BST.inOrderTraversalRecursive(BST.root);
+  // prints 9 10 13 15 17 22 25 27
+  BST.inOrderTraversalRecursive(BST.root);
 
-BST.remove(15);
+  BST.remove(15);
 
-//          17
-//         /  \
-//        10   25
-//       / \   / \
-//      9  13 22  27
+  //          17
+  //         /  \
+  //        10   25
+  //       / \   / \
+  //      9  13 22  27
 
-console.log("recursive inorder traversal");
-BST.inOrderTraversalRecursive(BST.root);
-console.log("iterative inorder traversal");
-BST.inOrderTraversalIterative(BST.root);
+  console.log("recursive inorder traversal");
+  BST.inOrderTraversalRecursive(BST.root);
+  console.log("iterative inorder traversal");
+  BST.inOrderTraversalIterative(BST.root);
 
-console.log("recursive preorder traversal");
-BST.preOrderTraversalRecursive(BST.root);
-console.log("iterative preorder traversal");
-BST.preOrderTraversalIterative(BST.root);
+  console.log("recursive preorder traversal");
+  BST.preOrderTraversalRecursive(BST.root);
+  console.log("iterative preorder traversal");
+  BST.preOrderTraversalIterative(BST.root);
 
-console.log("recursive postorder traversal");
-BST.postOrderTraversalRecursive(BST.root);
-console.log("iterative postorder traversal");
-BST.postOrderTraversalIterative(BST.root);
+  console.log("recursive postorder traversal");
+  BST.postOrderTraversalRecursive(BST.root);
+  console.log("iterative postorder traversal");
+  BST.postOrderTraversalIterative(BST.root);
 
-console.log("BFS");
-BST.breathFirstSearch(BST.root);
+  console.log("BFS");
+  BST.breathFirstSearch(BST.root);
+};
 
-// Credit: test cases are copied from https://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/
+// test();

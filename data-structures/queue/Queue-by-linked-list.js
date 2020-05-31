@@ -63,6 +63,6 @@ const test = () => {
   console.log(queue.print());
 };
 
-test();
+// test();
 
 module.exports = Queue;
